@@ -3,7 +3,9 @@ package com.bank.atm.service.Impl;
 import com.bank.atm.dto.AccountDto;
 import com.bank.atm.entity.*;
 import com.bank.atm.service.*;
+import io.reactivex.Scheduler;
 import io.reactivex.Single;
+import io.reactivex.schedulers.Schedulers;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,29 +37,31 @@ public class BalanceAccountServiceImpl implements BalanceAccountService
     private final CardService cardService;
 
     @Override
-    public Single<BalanceAccount> consultBalanceAcount(String documentNumber)
+    public Single<BalanceAccount> consultBalanceAccount(String documentNumber)
     {
         Single<BalanceAccount> balanceAccount = personService.validatePersonByDocumentNumber(documentNumber)
-                                                             .flatMap(validatePersonResponse -> getConsultBalanceAcountMapped(documentNumber, validatePersonResponse))
+                                                             .flatMap(validatePersonResponse -> getConsultBalanceAccountMapped(documentNumber, validatePersonResponse))
                                                              .doOnError(throwable -> log.error(throwable));
 
         return balanceAccount;
     }
 
     @Override
-    public Single<BalanceAccount> getConsultBalanceAcountMapped(String documentNumber, ValidatePersonResponse validatePersonResponse)
+    public Single<BalanceAccount> getConsultBalanceAccountMapped(String documentNumber, ValidatePersonResponse validatePersonResponse)
     {
         return cardService.getCardsByDocumentNumber(documentNumber)
                           .map(cardResponse -> {
                               List<AccountResponse> activeCards =
                                       cardService.getCardsByDocumentNumber(documentNumber)
                                                  .map(cardResponse1 -> cardResponse1.getCards())
+                                                 .map(cards -> cards.stream())
                                                  .blockingGet()
-                                                 .stream()
                                                  .filter(card -> card.isActive())
+                                                 .parallel()
                                                  .map(c -> accountService.getCardByCardNumber(c.getCardNumber())
-                                                                         .subscribeOn(io())
+                                                                         //.subscribeOn(Schedulers.newThread())
                                                                          .toObservable())
+
                                                  .map(ac -> ac.blockingFirst())
                                                  .collect(Collectors.toList())
                                                  ;

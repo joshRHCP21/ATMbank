@@ -18,7 +18,7 @@ public class BalanceAccountController {
     @PostMapping("/deposits")
     public Single<BalanceAccount> consultBalanceAcountByDocumentNumber(@RequestBody DocumentRequest documentRequest)
     {
-        return balanceAccountService.consultBalanceAcount(documentRequest.getDocument());
+        return balanceAccountService.consultBalanceAccount(documentRequest.getDocument());
     }
 
 }
