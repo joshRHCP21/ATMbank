@@ -9,13 +9,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Person
+public class PersonResponse
 {
     private String id;
     private String document;
-    private String name;
-    private String lastName;
-    private String Sex;
     private boolean fingerprint;
     private boolean blacklist;
 }
