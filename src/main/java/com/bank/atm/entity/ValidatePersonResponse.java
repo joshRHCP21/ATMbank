@@ -9,7 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class FingerprintResponse
+public class ValidatePersonResponse
 {
     private String entityName;
     private boolean success;

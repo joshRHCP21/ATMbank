@@ -1,7 +1,7 @@
 package com.bank.atm.controller;
 
 import com.bank.atm.entity.DocumentRequest;
-import com.bank.atm.entity.FingerprintResponse;
+import com.bank.atm.entity.ValidatePersonResponse;
 import com.bank.atm.service.FingerprintService;
 import io.reactivex.Single;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ public class FingerprintController
     private final FingerprintService fingerprintService;
 
     @PostMapping("/validate")
-    public Single<FingerprintResponse> validateFingerprintByDocument(@RequestBody DocumentRequest documentRequest)
+    public Single<ValidatePersonResponse> validateFingerprintByDocument(@RequestBody DocumentRequest documentRequest)
     {
         return fingerprintService.validateFingerPrintByDocument(documentRequest);
     }

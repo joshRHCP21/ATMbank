@@ -1,7 +1,7 @@
 package com.bank.atm.http.api;
 
 import com.bank.atm.entity.DocumentRequest;
-import com.bank.atm.entity.ReniecResponse;
+import com.bank.atm.entity.ValidatePersonResponse;
 import io.reactivex.Single;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -9,5 +9,5 @@ import retrofit2.http.POST;
 public interface ReniecApi
 {
     @POST("/external/reniec/validate")
-    Single<ReniecResponse> validateByDocumentNumber(@Body DocumentRequest documentRequest);
+    Single<ValidatePersonResponse> validateByDocumentNumber(@Body DocumentRequest documentRequest);
 }

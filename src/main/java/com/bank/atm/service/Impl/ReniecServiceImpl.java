@@ -1,7 +1,7 @@
 package com.bank.atm.service.Impl;
 
 import com.bank.atm.entity.DocumentRequest;
-import com.bank.atm.entity.ReniecResponse;
+import com.bank.atm.entity.ValidatePersonResponse;
 import com.bank.atm.http.api.ReniecApi;
 import com.bank.atm.http.client.ApiClient;
 import com.bank.atm.service.ReniecService;
@@ -14,13 +14,13 @@ import org.springframework.stereotype.Service;
 public class ReniecServiceImpl implements ReniecService
 {
     @Override
-    public Single<ReniecResponse> validateByDocument(DocumentRequest documentRequest)
+    public Single<ValidatePersonResponse> validateByDocument(DocumentRequest documentRequest)
     {
         ApiClient apiClient = new ApiClient();
         ReniecApi reniecApiApi = apiClient.getRetrofitReniecApi().create(ReniecApi.class);
 
         log.info(documentRequest);
-        Single<ReniecResponse> reniecResponse = reniecApiApi.validateByDocumentNumber(documentRequest);
+        Single<ValidatePersonResponse> reniecResponse = reniecApiApi.validateByDocumentNumber(documentRequest);
         return reniecResponse;
     }
 }

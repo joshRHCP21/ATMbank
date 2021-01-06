@@ -1,8 +1,7 @@
 package com.bank.atm.http.api;
 
 import com.bank.atm.entity.DocumentRequest;
-import com.bank.atm.entity.FingerprintResponse;
-import com.bank.atm.entity.PersonResponse;
+import com.bank.atm.entity.ValidatePersonResponse;
 import io.reactivex.Single;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -10,5 +9,5 @@ import retrofit2.http.POST;
 public interface FingerprintApi
 {
     @POST("/core/fingerprints/validate")
-    Single<FingerprintResponse> getPersonByDocumentNumber(@Body DocumentRequest documentRequest);
+    Single<ValidatePersonResponse> getPersonByDocumentNumber(@Body DocumentRequest documentRequest);
 }

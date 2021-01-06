@@ -1,5 +1,6 @@
 package com.bank.atm.entity;
 
+import io.reactivex.Observable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

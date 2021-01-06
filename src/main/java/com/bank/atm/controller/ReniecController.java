@@ -1,7 +1,7 @@
 package com.bank.atm.controller;
 
 import com.bank.atm.entity.DocumentRequest;
-import com.bank.atm.entity.ReniecResponse;
+import com.bank.atm.entity.ValidatePersonResponse;
 import com.bank.atm.service.ReniecService;
 import io.reactivex.Single;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +22,7 @@ public class ReniecController
     private final ReniecService reniecService;
 
     @PostMapping("/validate")
-    public Single<ReniecResponse> validatePersonByDocument(@RequestBody DocumentRequest documentRequest)
+    public Single<ValidatePersonResponse> validatePersonByDocument(@RequestBody DocumentRequest documentRequest)
     {
         return reniecService.validateByDocument(documentRequest);
     }
