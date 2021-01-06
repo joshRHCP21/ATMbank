@@ -23,6 +23,6 @@ public class AccountController
     @GetMapping("/{cardNumber}")
     public Single<AccountResponse> getCardByCardNumber(@PathVariable String cardNumber)
     {
-        return accountService.getCardByCardNumber(cardNumber);
+        return accountService.getAccountByCardNumber(cardNumber);
     }
 }

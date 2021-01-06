@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class AccountServiceImpl implements AccountService
 {
     @Override
-    public Single<AccountResponse> getCardByCardNumber(String cardNumber)
+    public Single<AccountResponse> getAccountByCardNumber(String cardNumber)
     {
         ApiClient apiClient = new ApiClient();
         AccountApi accountApi = apiClient.getRetrofitAccountApi().create(AccountApi.class);

@@ -5,5 +5,5 @@ import io.reactivex.Single;
 
 public interface AccountService
 {
-    Single<AccountResponse> getCardByCardNumber(String cardNumber);
+    Single<AccountResponse> getAccountByCardNumber(String cardNumber);
 }
