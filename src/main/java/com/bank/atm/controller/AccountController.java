@@ -1,7 +1,7 @@
 package com.bank.atm.controller;
 
-import com.bank.atm.entity.PersonResponse;
-import com.bank.atm.service.PersonService;
+import com.bank.atm.entity.AccountResponse;
+import com.bank.atm.service.AccountService;
 import io.reactivex.Single;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -13,18 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/atm/people")
+@RequestMapping("/core/accounts")
 @Log4j2
-public class PersonController
+public class AccountController
 {
     @Autowired
-    private final PersonService personService;
+    private final AccountService accountService;
 
-    @GetMapping("/{documentNumber}")
-    public Single<PersonResponse> getPersonByDocumentNumber(@PathVariable String documentNumber)
+    @GetMapping("/{cardNumber}")
+    public Single<AccountResponse> getCardByCardNumber(@PathVariable String cardNumber)
     {
-        log.info(documentNumber);
-        return personService.getByDocumentNumber(documentNumber);
+        return accountService.getCardByCardNumber(cardNumber);
     }
-
 }

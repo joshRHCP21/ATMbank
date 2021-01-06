@@ -14,6 +14,7 @@ public class ApiClient
     private Retrofit retrofitFingerprintApi = null;
     private Retrofit retrofitReniecApi = null;
     private Retrofit retrofitCardApi = null;
+    private Retrofit retrofitAccountApi = null;
 
     public Retrofit getRetrofitPeopleApi()
     {
@@ -73,5 +74,45 @@ public class ApiClient
                 .build();
 
         return retrofitReniecApi;
+    }
+
+    public Retrofit getRetrofitCardApi()
+    {
+        baseOkHttpClient = new OkHttpClient();
+        interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
+
+        OkHttpClient cardApiClient = baseOkHttpClient.newBuilder()
+                .addInterceptor(interceptor)
+                .build();
+
+        retrofitCardApi = new Retrofit.Builder()
+                .baseUrl("http://localhost:8083")
+                .client(cardApiClient)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofitCardApi;
+    }
+
+    public Retrofit getRetrofitAccountApi()
+    {
+        baseOkHttpClient = new OkHttpClient();
+        interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
+
+        OkHttpClient accountApiClient = baseOkHttpClient.newBuilder()
+                .addInterceptor(interceptor)
+                .build();
+
+        retrofitAccountApi = new Retrofit.Builder()
+                .baseUrl("http://localhost:8084")
+                .client(accountApiClient)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofitAccountApi;
     }
 }
