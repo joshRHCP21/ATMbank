@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: r
+  labels:
+    app: atm-back
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: atm-back
+  template:
+    metadata:
+      labels:
+        app: atm-back
+    spec:
+      containers:
+        - name: atm-back
+          image: acrjaavatm01.azurecr.io/atm:latest
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+      imagePullSecrets:
+        - name: regcred
+---
+kind: Service
+apiVersion: v1
+metadata:
+   name: atm-balancer
+spec:
+  selector:
+    app: atm-balancer
+  ports:
+    - port: 80
+      targetPort: 8080
+  type: LoadBalancer

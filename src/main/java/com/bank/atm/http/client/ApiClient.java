@@ -27,7 +27,8 @@ public class ApiClient
                                                        .build();
 
         retrofitPeopleApi = new Retrofit.Builder()
-                                       .baseUrl("http://localhost:8080")
+                                        .baseUrl("20.40.241.122")
+                                       //.baseUrl("http://localhost:8080")
                                        .client(peopleApiClient)
                                        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                                        .addConverterFactory(GsonConverterFactory.create())
@@ -47,6 +48,7 @@ public class ApiClient
                 .build();
 
         retrofitFingerprintApi = new Retrofit.Builder()
+                .baseUrl("20.40.240.36")
                 .baseUrl("http://localhost:8081")
                 .client(fingerprintApiClient)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -67,6 +69,7 @@ public class ApiClient
                 .build();
 
         retrofitReniecApi = new Retrofit.Builder()
+                // .baseUrl("10.0.200.188")
                 .baseUrl("http://localhost:8082")
                 .client(reniecApiClient)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -87,7 +90,8 @@ public class ApiClient
                 .build();
 
         retrofitCardApi = new Retrofit.Builder()
-                .baseUrl("http://localhost:8083")
+                .baseUrl("20.40.241.214 ")
+                //.baseUrl("http://localhost:8083")
                 .client(cardApiClient)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
@@ -107,7 +111,8 @@ public class ApiClient
                 .build();
 
         retrofitAccountApi = new Retrofit.Builder()
-                .baseUrl("http://localhost:8084")
+                .baseUrl("20.40.241.155")
+                //.baseUrl("http://localhost:8084")
                 .client(accountApiClient)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
